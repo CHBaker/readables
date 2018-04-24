@@ -1,0 +1,8 @@
+{
+    "emmet.syntaxProfiles": {
+        "javascript" : "jsx"
+    },
+    "auto-close-tag.activationOnLanguage": [
+            "jsx"
+    ],
+}
