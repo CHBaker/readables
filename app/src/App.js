@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route } from 'react-router-dom'
+
+import Nav from './components/nav/Nav';
+import Main from './components/main/Main';
+
 
 class App extends Component {
     render() {
         return (
-            <div className="container">
-                <div className='row'>
-                    <div className='col'>
-                        stuff 1
-            </div>
-                    <div className='col'>
-                        stuff 2
-            </div>
+            <div className='row app-main'>
+                <div className='col-3 nav-col'>
+                    <Nav />
                 </div>
-                <div className='row'>
+                <Route exact path='/' render={() => (
                     <div className='col'>
-                        stuff 1
-            </div>
-                    <div className='col'>
-                        stuff 2
-            </div>
-                </div>
+                        <Main />
+                    </div>
+                )} />
             </div>
         );
     }
