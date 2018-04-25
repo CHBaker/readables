@@ -2,4 +2,7 @@
     background: black;
     color: white;
     height: 100%;
+    position: relative;
+    z-index: 5;
+    box-shadow: 5px 0px 35px 10px #00000078;
 }

@@ -1,3 +1,35 @@
 .main {
+    height: 100%;
+}
 
+.bottom-row, .top-row {
+    height: 50%;
+}
+
+.top-left {
+    background: -webkit-linear-gradient(315deg, #5b247a 0%,#1bcedf 100%);
+    background: -o-linear-gradient(315deg, #5b247a 0%,#1bcedf 100%);
+    background: linear-gradient(135deg, #5b247a 0%,#1bcedf 100%);
+    border-right: 3px solid white;
+    border-bottom: 3px solid white;
+}
+
+.top-right {
+    background: -webkit-linear-gradient(315deg, #fcdf8a 0%,#f38381 100%);
+    background: -o-linear-gradient(315deg, #fcdf8a 0%,#f38381 100%);
+    background: linear-gradient(210deg, #fcdf8a 0%,#f38381 100%);
+    border-bottom: 3px solid white;
+}
+
+.bottom-left {
+    background: -webkit-linear-gradient(315deg, #fc6076 0%,#ff9a44 100%);
+    background: -o-linear-gradient(315deg, #fc6076 0%,#ff9a44 100%);
+    background: linear-gradient(45deg, #fc6076 0%,#ff9a44 100%);
+    border-right: 3px solid white;
+}
+
+.bottom-right {
+    background: -webkit-linear-gradient(315deg, #209cff 0%,#68e0cf 100%);
+    background: -o-linear-gradient(315deg, #209cff 0%,#68e0cf 100%);
+    background: linear-gradient(135deg, #209cff 0%,#68e0cf 100%);
 }
