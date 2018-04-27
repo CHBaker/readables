@@ -20,23 +20,31 @@ class App extends Component {
                     </div>
                 )} />
                 <Route exact path='/react' render={() => (
-                    <div className='col'>
-                        <Category title='React' />
+                    <div className='col react-category'>
+                        <Category
+                            title='React'
+                        />
                     </div>
                 )} />
                 <Route exact path='/redux' render={() => (
-                    <div className='col'>
-                        <Category title='Redux' />
+                    <div className='col redux-category'>
+                        <Category
+                            title='Redux'
+                        />
                     </div>
                 )} />
                 <Route exact path='/udacity' render={() => (
-                    <div className='col'>
-                        <Category title='Udacity' />
+                    <div className='col udacity-category'>
+                        <Category
+                            title='Udacity'
+                        />
                     </div>
                 )} />
                 <Route exact path='/Node' render={() => (
-                    <div className='col'>
-                        <Category title='Node' />
+                    <div className='col node-category'>
+                        <Category
+                            title='Node'
+                        />
                     </div>
                 )} />
             </div>

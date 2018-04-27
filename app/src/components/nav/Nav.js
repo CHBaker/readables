@@ -9,7 +9,7 @@ class Nav extends Component {
             <div className='nav'>
                 <div className='container'>
                     <div className='row menu-header'>
-                        Categories | <Link to='/'>Home</Link>
+                        Threads | <Link to='/'>Home</Link>
                     </div>
                     <hr />
                     <div className='container menu-options-row'>

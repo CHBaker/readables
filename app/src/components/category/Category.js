@@ -8,17 +8,21 @@ class Category extends Component {
     }
 
     componentDidMount() {
-        this.setState({ title: this.props.title })
+        this.setState({
+            title: this.props.title
+        })
     }
 
     render() {
-        const { title } = this.state
+        const { title, category } = this.state
 
         return (
             <div className='row'>
-                <div className='title'>
-                    { this.props.title }
+                <div className='col'></div>
+                <div className='col title'>
+                    { title }
                 </div>
+                <div className='col'></div>
             </div>
         )
     }

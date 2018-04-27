@@ -5,3 +5,27 @@
 .nav-col {
     padding-right: 0 !important;
 }
+
+.react-category {
+    background: -webkit-linear-gradient(315deg, #5b247a 0%,#1bcedf 100%);
+    background: -o-linear-gradient(315deg, #5b247a 0%,#1bcedf 100%);
+    background: linear-gradient(135deg, #5b247a 0%,#1bcedf 100%);
+}
+
+.redux-category {
+    background: -webkit-linear-gradient(315deg, #fcdf8a 0%,#f38381 100%);
+    background: -o-linear-gradient(315deg, #fcdf8a 0%,#f38381 100%);
+    background: linear-gradient(210deg, #fcdf8a 0%,#f38381 100%);
+}
+
+.udacity-category {
+    background: -webkit-linear-gradient(315deg, #fc6076 0%,#ff9a44 100%);
+    background: -o-linear-gradient(315deg, #fc6076 0%,#ff9a44 100%);
+    background: linear-gradient(45deg, #fc6076 0%,#ff9a44 100%);
+}
+
+.node-category {
+    background: -webkit-linear-gradient(315deg, #209cff 0%,#68e0cf 100%);
+    background: -o-linear-gradient(315deg, #209cff 0%,#68e0cf 100%);
+    background: linear-gradient(135deg, #209cff 0%,#68e0cf 100%);
+}
