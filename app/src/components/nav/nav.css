@@ -6,3 +6,7 @@
     z-index: 5;
     box-shadow: 5px 0px 35px 10px #00000078;
 }
+
+hr {
+    border-color: white !important;
+}

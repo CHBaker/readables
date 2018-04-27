@@ -6,6 +6,26 @@
     height: 50%;
 }
 
+a {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.option {
+    text-align: center;
+    padding-top: 16%;
+    color: white;
+    font-size: 30px;
+    transition: all .1s ease;
+    cursor: pointer;
+}
+
+.option:hover {
+    opacity: .85;
+    font-size: 28px;
+    transition: all .3s ease;
+}
+
 .top-left {
     background: -webkit-linear-gradient(315deg, #5b247a 0%,#1bcedf 100%);
     background: -o-linear-gradient(315deg, #5b247a 0%,#1bcedf 100%);

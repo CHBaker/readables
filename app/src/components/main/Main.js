@@ -8,20 +8,20 @@ class Main extends Component {
         return (
             <div className='main'>
                 <div className='row top-row'>
-                    <div className='col top-left'>
-                        col 1
-                    </div>
-                    <div className='col top-right'>
-                        col 2
-                    </div>
+                    <Link className='col option top-left' to='/react'>
+                        React
+                    </Link>
+                    <Link className='col option top-right' to='/redux'>
+                        Redux
+                    </Link>
                 </div>
                 <div className='row bottom-row'>
-                    <div className='col bottom-left'>
-                        col 3
-                    </div>
-                    <div className='col bottom-right'>
-                        col 4
-                    </div>
+                    <Link className='col option bottom-left' to='Udacity'>
+                        Udacity
+                    </Link>
+                    <Link className='col option bottom-right' to='Node'>
+                        Node
+                    </Link>
                 </div>
             </div>
         )
