@@ -1,9 +1,11 @@
 .app-main {
     height: 100%;
+    margin: 0 !important;
 }
 
 .nav-col {
     padding-right: 0 !important;
+    padding-left: 0 !important;
 }
 
 .react-category {

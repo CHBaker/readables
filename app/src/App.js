@@ -5,9 +5,14 @@ import { Route } from 'react-router-dom';
 import Nav from './components/nav/Nav';
 import Main from './components/main/Main';
 import Category from './components/category/Category';
-
+import * as Api from './utils/api';
 
 class App extends Component {
+
+    componentDidMount() {
+        Api.getAllPosts().then(posts => console.log('all : ', posts))
+    }
+
     render() {
         return (
             <div className='row app-main'>
@@ -22,28 +27,28 @@ class App extends Component {
                 <Route exact path='/react' render={() => (
                     <div className='col react-category'>
                         <Category
-                            title='React'
+                            category='react'
                         />
                     </div>
                 )} />
                 <Route exact path='/redux' render={() => (
                     <div className='col redux-category'>
                         <Category
-                            title='Redux'
+                            category='redux'
                         />
                     </div>
                 )} />
                 <Route exact path='/udacity' render={() => (
                     <div className='col udacity-category'>
                         <Category
-                            title='Udacity'
+                            category='udacity'
                         />
                     </div>
                 )} />
-                <Route exact path='/Node' render={() => (
+                <Route exact path='/node' render={() => (
                     <div className='col node-category'>
                         <Category
-                            title='Node'
+                            category='node'
                         />
                     </div>
                 )} />

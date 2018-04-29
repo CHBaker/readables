@@ -1,3 +1,8 @@
+.category-wrapper {
+    height: 100%;
+    overflow: hidden;
+}
+
 .title {
     text-align: center;
     font-size: 35px;
@@ -14,4 +19,10 @@
     background: -webkit-linear-gradient(315deg, #5b247a 0%,#1bcedf 100%);
     background: -o-linear-gradient(315deg, #5b247a 0%,#1bcedf 100%);
     background: linear-gradient(135deg, #5b247a 0%,#1bcedf 100%);
+}
+.content-row {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+    height: 90%;
+    margin-top: 35px;
 }
