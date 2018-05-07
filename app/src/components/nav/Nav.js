@@ -26,22 +26,6 @@ class Nav extends Component {
                             Node
                         </Link>
                     </div>
-                    <div className='row'>
-                        <div className='col'>
-                            nav 1
-                        </div>
-                        <div className='col'>
-                            nav 2
-                        </div>
-                    </div>
-                    <div className='row'>
-                        <div className='col'>
-                            nav 3
-                        </div>
-                        <div className='col'>
-                            nav 4
-                        </div>
-                    </div>
                 </div>
             </div>
         )

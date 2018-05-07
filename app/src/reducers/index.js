@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
+import { postsFetchedSuccess } from '../actions';
 
-const initialAppState = {
+export const initialAppState = {
     user : null,
     posts: []
 }
@@ -9,19 +10,19 @@ function app(state = initialAppState, action) {
     return state;
 }
 
-// function posts (state = initialCalendarState, action)  {
-
-//     switch (action.type) {
-//         case GET_ALL_POSTS:
-//             return {
-//                 ...state,
-//                 posts: posts
-//                 }
-//         default:
-//             return state
-//     }
-// }
+function allPosts(state = initialAppState, action) {
+    switch (action.type) {
+        case postsFetchedSuccess:
+            return {
+                ...state,
+                posts: action.posts
+            };
+        default:
+            return state;
+    }
+}
 
 export default combineReducers({
-    app
+    app,
+    allPosts
 })

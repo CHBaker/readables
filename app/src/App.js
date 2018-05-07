@@ -5,12 +5,16 @@ import { Route } from 'react-router-dom';
 import Nav from './components/nav/Nav';
 import Main from './components/main/Main';
 import Category from './components/category/Category';
-import * as Api from './utils/api';
+import * as Api from './utils/Api';
 
 class App extends Component {
 
-    componentDidMount() {
-        Api.getAllPosts().then(posts => console.log('all : ', posts))
+    state = {
+        posts: []
+    }
+
+    componentWillMount() {
+        this.props.getAllPosts();
     }
 
     render() {
@@ -57,4 +61,13 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+    getAllPosts: () => dispatch(Api.getAllPosts())
+})
+
+const mapStateToProps = (state) => ({
+    posts: state.allPosts.posts,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+

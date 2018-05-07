@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './category.css';
-import * as Api from '../../utils/api';
 import * as capitalize from '../../utils/capitalize.js';
 
 class Category extends Component {
@@ -11,16 +10,7 @@ class Category extends Component {
     }
 
     componentDidMount() {
-        Api.getPostByCategory(this.props.category)
-            .then(
-                (posts) => {
-                    this.setState({
-                        category: this.props.category,
-                        posts: posts
-                    })
-                    console.log('state, ', this.state.posts)
-                }
-        )
+
     }
 
     render() {
