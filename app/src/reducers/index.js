@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { postsFetchedSuccess } from '../actions';
+import { POSTS_FETCHED_SUCCESS } from '../actions';
 
 export const initialAppState = {
     user : null,
@@ -12,7 +12,7 @@ function app(state = initialAppState, action) {
 
 function allPosts(state = initialAppState, action) {
     switch (action.type) {
-        case postsFetchedSuccess:
+        case POSTS_FETCHED_SUCCESS:
             return {
                 ...state,
                 posts: action.posts

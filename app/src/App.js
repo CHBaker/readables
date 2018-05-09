@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Nav from './components/nav/Nav';
 import Main from './components/main/Main';
 import Category from './components/category/Category';
 import * as Api from './utils/Api';
+import { fetchPosts } from './actions/index'
 
 class App extends Component {
 
@@ -14,7 +16,7 @@ class App extends Component {
     }
 
     componentWillMount() {
-        this.props.getAllPosts();
+        this.props.fetchPosts();
     }
 
     render() {
@@ -61,13 +63,12 @@ class App extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    getAllPosts: () => dispatch(Api.getAllPosts())
-})
+const mapDispatchToProps = dispatch => ({
+    fetchPosts: () => dispatch(fetchPosts())
+});
 
-const mapStateToProps = (state) => ({
-    posts: state.allPosts.posts,
+const mapStateToProps = state => ({
+    posts: state.allPosts.posts
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
