@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Nav from './components/nav/Nav';
@@ -71,4 +72,4 @@ const mapStateToProps = state => ({
     posts: state.allPosts.posts
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
