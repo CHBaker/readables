@@ -1,20 +1,24 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './category.css';
+
 import * as capitalize from '../../utils/capitalize.js';
 
 class Category extends Component {
+
     state = {
-        category: '',
-        posts: []
+        category: ''
     }
 
-    componentDidMount() {
-
+    componentWillMount() {
+        this.setState({ category: this.props.category })
     }
 
     render() {
-        const { category, posts } = this.state
+
+        const { category } = this.state;
+        const { allPosts } = this.props;
 
         return (
             <div className='category-wrapper'>
@@ -27,7 +31,7 @@ class Category extends Component {
                 </div>
                 <div className='row'>
                     {
-                        posts.map((post) => (
+                        allPosts[category].map((post) => (
                             <div className='row content-row' key={ post.id }>
                                 <div className='col'></div>
                                 <div className='col-10 post'>
@@ -53,4 +57,8 @@ class Category extends Component {
     }
 }
 
-export default Category;
+const mapStateToProps = state => ({
+    allPosts: state.allPosts
+});
+
+export default withRouter(connect(mapStateToProps)(Category));

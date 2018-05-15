@@ -1,4 +1,3 @@
-import { postsFetchedSuccess } from "../actions";
 
 const token = 'super-sofisticated-token';
 const url = 'http://localhost:3001';
@@ -11,26 +10,3 @@ export function getAllPosts() {
             .catch(error => console.log(error))
     );
 }
-
-// export const getPostsByCategory = (category) => {
-//     switch(category) {
-//         case 'udacity':
-//             return fetch(`http://localhost:3001/udacity/posts`,
-//                  { headers: { 'Authorization': token }})
-//                  .then(res => res.json());
-//         case 'react':
-//             return fetch(`http://localhost:3001/react/posts`,
-//                         { headers: { 'Authorization': token }})
-//                         .then((res) => res.json());
-//         case 'redux':
-//             return fetch(`http://localhost:3001/redux/posts`,
-//                         { headers: { 'Authorization': token }})
-//                         .then((res) => res.json());
-//         case 'node':
-//             return fetch(`http://localhost:3001/udacity/posts`,
-//                         { headers: { 'Authorization': token }})
-//                         .then((res) => res.json());
-//         default:
-//             return
-//     }
-// }
