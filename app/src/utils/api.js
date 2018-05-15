@@ -7,14 +7,7 @@ const headers = { 'Accept': 'application/json', 'Authorization': token };
 export function getAllPosts() {
     return (
         fetch(`${url}/posts`, { headers })
-            .then(response => {
-                if (!response.ok) {
-                    console.log(response);
-                }
-                return response;
-            })
             .then(response => response.json())
-            //.then(posts => dispatch(postsFetchedSuccess(posts)))
             .catch(error => console.log(error))
     );
 }

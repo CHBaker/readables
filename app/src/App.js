@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import Nav from './components/nav/Nav';
 import Main from './components/main/Main';
 import Category from './components/category/Category';
-import * as Api from './utils/Api';
 import { fetchPosts } from './actions/index'
 
 class App extends Component {
