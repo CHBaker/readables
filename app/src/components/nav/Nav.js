@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './nav.css'
+import NewPost from '../new_post/NewPost';
 
 class Nav extends Component {
 
@@ -25,6 +26,16 @@ class Nav extends Component {
                         <Link to='/node' className='row menu-option'>
                             Node
                         </Link>
+                    </div>
+                    <div className='new-post-wrapper'>
+                        <button className='new-post-button'>
+                            New Post
+                        </button>
+                        <NewPost
+                            onGetPosts={() => {
+                                this.getPosts()
+                            }}
+                        />
                     </div>
                 </div>
             </div>

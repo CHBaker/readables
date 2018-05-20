@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { POSTS_FETCHED_SUCCESS } from '../actions';
+import { POSTS_FETCHED_SUCCESS, NEW_POST_SUCCESS } from '../actions';
 
 export const initialUserState = {
     user : null,
@@ -27,6 +27,12 @@ function allPosts(state = initialPostState, action) {
                 udacity: action.posts.filter((post) => post.category === 'udacity'),
                 node: action.posts.filter((post) => post.category === 'node'),
             };
+        case NEW_POST_SUCCESS:
+            const category = action.post.category;
+            return {
+                ...state,
+                [category]: [...state[category], action.post]
+            }
         default:
             return state;
     }

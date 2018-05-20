@@ -10,3 +10,15 @@ export function getAllPosts() {
             .catch(error => console.log(error))
     );
 }
+
+export function newPost(post) {
+    return(
+        fetch(`${url}/posts`, {
+                method: 'POST',
+                headers : { headers },
+                body: JSON.stringify(post)
+            }
+        ).then(() => true)
+        .catch(error => console.log(error))
+    );
+}

@@ -16,6 +16,10 @@ class App extends Component {
     }
 
     componentWillMount() {
+        this.getPosts();
+    }
+
+    getPosts() {
         this.props.fetchPosts();
     }
 
@@ -23,7 +27,11 @@ class App extends Component {
         return (
             <div className='row app-main'>
                 <div className='col-3 nav-col'>
-                    <Nav />
+                    <Nav
+                        onGetPosts={() => {
+                            this.getPosts()
+                        }}
+                    />
                 </div>
                 <Route exact path='/' render={() => (
                     <div className='col'>
