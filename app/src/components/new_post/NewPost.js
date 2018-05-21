@@ -21,37 +21,53 @@ class NewPost extends Component {
         const { category } = this.state;
 
         return (
-            <div className='row new-post-row'>
-                <form>
-                    <div className='row form-row'>
-                        <div className='col'>
-                            <label>
-                                Title
-                                <input type='text' value='' />
-                            </label>
+            <div>
+                <div className='veil'></div>
+                <div className='new-post-wrapper'>
+                    <form className='new-post-form'>
+                        <div className='form-group row'>
+                            <div className='col form-title'>
+                                New Post
+                            </div>
                         </div>
-                        <div className='col'>
-                            <label>
-                                Category
-                                <select value={category} onChange={this.changeCategory}>
+                        <div className='form-group row'>
+                            <label htmlFor="title" className="col-1 col-form-label">Title</label>
+                            <div className="col-4">
+                                <input type="text" className="form-control" id="title" placeholder="title" />
+                            </div>
+                            <div className='col'></div>
+                            <label htmlFor="category" className="col-2 col-form-label">Category</label>
+                            <div className="col-4">
+                                <select className='form-control' value={category} onChange={this.changeCategory}>
                                     <option value='react'>React</option>
                                     <option value='redux'>Redux</option>
                                     <option value='udacity'>Udacity</option>
                                     <option value='node'>Node</option>
                                 </select>
-                            </label>
+                            </div>
                         </div>
-                    </div>
-                    <div className='row form-row'>
-                        <div className='col post-body'>
-                            <textarea type='text' value=''>
-                            </textarea>
+                        <div className='form-group row'>
+                            <div className='col-1'></div>
+                            <label htmlFor='content col-2'>Content</label>
+                            <div className='col'></div>
                         </div>
-                    </div>
-                    <button type='submit' className='submit-new-post'>
-                        Post
-                    </button>
-                </form>
+                        <div className='form-group row'>
+                            <div className='col post-body'>
+                                <textarea className='content-input' type='text' name='content' value=''>
+                                </textarea>
+                            </div>
+                        </div>
+                        <div className='form-group row'>
+                            <div className='col'></div>
+                            <div className='col button-col'>
+                                <button type='submit' className='btn btn-group btn-primary post-btn'>
+                                    POST
+                                </button>
+                            </div>
+                            <div className='col'></div>
+                        </div>
+                    </form>
+                </div>
             </div>
         )
     }

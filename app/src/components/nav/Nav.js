@@ -27,7 +27,7 @@ class Nav extends Component {
                             Node
                         </Link>
                     </div>
-                    <div className='new-post-wrapper'>
+                    <div className='new-post-row'>
                         <button className='new-post-button'>
                             New Post
                         </button>
