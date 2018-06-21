@@ -1,9 +1,17 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import './nav.css'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './nav.css';
 import NewPost from '../new_post/NewPost';
 
 class Nav extends Component {
+
+    state = {
+        newPostModal: false
+    }
+
+    closeNewPostModal = () => {
+        this.setState({ newPostModal: false });
+    }
 
     render() {
         return (
@@ -28,14 +36,22 @@ class Nav extends Component {
                         </Link>
                     </div>
                     <div className='new-post-row'>
-                        <button className='new-post-button'>
+                        <button
+                            onClick={() => this.setState({ newPostModal: true })}
+                            className='new-post-button'
+                        >
                             New Post
                         </button>
-                        <NewPost
-                            onGetPosts={() => {
-                                this.getPosts()
-                            }}
-                        />
+                        {
+                            this.state.newPostModal &&
+                            <NewPost
+                                onGetPosts={() => {
+                                    this.getPosts()
+                                }}
+
+                                closeModal={this.closeNewPostModal}
+                            />
+                        }
                     </div>
                 </div>
             </div>

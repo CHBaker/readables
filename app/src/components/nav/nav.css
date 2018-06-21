@@ -10,3 +10,11 @@
 hr {
     border-color: white !important;
 }
+
+.new-post-button {
+    cursor: pointer;
+    background: none;
+    border-radius: 5px;
+    border: 2px solid white;
+    color: white;
+}

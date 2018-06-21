@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './newPost.css';
 import serializeForm from 'form-serialize';
+import { connect } from 'react-redux';
+import { newPost } from '../../actions/index';
+import { NewPostType } from '../../types/types';
 
 class NewPost extends Component {
 
@@ -12,7 +15,17 @@ class NewPost extends Component {
         e.preventDefault();
         const values = serializeForm(e.target, { hash: true});
         values.category = this.state.category;
-        console.log(values);
+
+        const newPost = new NewPostType(
+            this.newUID(), Date.now(), values.title,
+            values.body, 'bob', values.category
+        );
+
+        this.props.newPost(newPost);
+    }
+
+    newUID = () => {
+        return Math.floor(Math.random()*8999999999999999+1000000000000000);
     }
 
     changeCategory = (e) => {
@@ -21,10 +34,14 @@ class NewPost extends Component {
 
     render() {
         const { category } = this.state;
+        const { closeModal } = this.props;
 
         return (
             <div>
-                <div className='veil'></div>
+                <div
+                    onClick={() => closeModal() }
+                    className='veil'
+                ></div>
                 <div className='new-post-wrapper'>
                     <form onSubmit={this.handleSubmit} className='new-post-form'>
                         <div className='form-group row'>
@@ -55,7 +72,7 @@ class NewPost extends Component {
                         </div>
                         <div className='form-group row'>
                             <div className='col post-body'>
-                                <textarea className='content-input' type='text' name='content'>
+                                <textarea className='content-input' type='text' name='body'>
                                 </textarea>
                             </div>
                         </div>
@@ -75,4 +92,12 @@ class NewPost extends Component {
     }
 }
 
-export default NewPost
+const mapDispatchToProps = dispatch => ({
+    newPost: (post) => dispatch(newPost(post))
+});
+
+const mapStateToProps = state => ({
+    posts: state.allPosts.posts
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewPost);

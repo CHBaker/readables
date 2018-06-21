@@ -12,8 +12,8 @@ export const fetchPosts = () => dispatch => {
     ).catch((error) => console.log(error));
 };
 
-export const newPost = () => dispatch => {
-    Api.newPost().then(post =>
+export const newPost = (post) => dispatch => {
+    Api.newPost(post).then(post =>
         dispatch({
             type: 'NEW_POST_SUCCESS',
             post

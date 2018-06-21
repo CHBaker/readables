@@ -12,10 +12,11 @@ export function getAllPosts() {
 }
 
 export function newPost(post) {
+    console.log(post);
     return(
         fetch(`${url}/posts`, {
                 method: 'POST',
-                headers : { headers },
+                headers : headers,
                 body: JSON.stringify(post)
             }
         ).then(() => true)
