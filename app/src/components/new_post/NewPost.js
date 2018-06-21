@@ -9,8 +9,10 @@ class NewPost extends Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault()
-        const values = serializeForm(e.target, { hash: true})
+        e.preventDefault();
+        const values = serializeForm(e.target, { hash: true});
+        values.category = this.state.category;
+        console.log(values);
     }
 
     changeCategory = (e) => {
@@ -24,16 +26,17 @@ class NewPost extends Component {
             <div>
                 <div className='veil'></div>
                 <div className='new-post-wrapper'>
-                    <form className='new-post-form'>
+                    <form onSubmit={this.handleSubmit} className='new-post-form'>
                         <div className='form-group row'>
                             <div className='col form-title'>
                                 New Post
                             </div>
                         </div>
-                        <div className='form-group row'>
+                        <hr className='new-post-hr' />
+                        <div className='form-group row form-top-wrapper'>
                             <label htmlFor="title" className="col-1 col-form-label">Title</label>
                             <div className="col-4">
-                                <input type="text" className="form-control" id="title" placeholder="title" />
+                                <input type="text" name="title" className="form-control" placeholder="title" />
                             </div>
                             <div className='col'></div>
                             <label htmlFor="category" className="col-2 col-form-label">Category</label>
@@ -46,21 +49,20 @@ class NewPost extends Component {
                                 </select>
                             </div>
                         </div>
-                        <div className='form-group row'>
-                            <div className='col-1'></div>
-                            <label htmlFor='content col-2'>Content</label>
+                        <div className='form-group row content-wrapper'>
+                            <label htmlFor='content'>Content</label>
                             <div className='col'></div>
                         </div>
                         <div className='form-group row'>
                             <div className='col post-body'>
-                                <textarea className='content-input' type='text' name='content' value=''>
+                                <textarea className='content-input' type='text' name='content'>
                                 </textarea>
                             </div>
                         </div>
                         <div className='form-group row'>
                             <div className='col'></div>
                             <div className='col button-col'>
-                                <button type='submit' className='btn btn-group btn-primary post-btn'>
+                                <button type='submit' value="submit" className='btn btn-group btn-primary post-btn'>
                                     POST
                                 </button>
                             </div>

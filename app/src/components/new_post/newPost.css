@@ -7,7 +7,7 @@
     color: black;
     border-radius: 5px;
     width: 700px;
-    height: 460px;
+    height: 498px;
     padding: 10px;
 }
 
@@ -48,4 +48,23 @@
     padding-left: 24px !important;
     letter-spacing: 4px;
     cursor: pointer;
+}
+
+.new-post-hr {
+    border-color: black !important;
+}
+
+.content-wrapper {
+    margin-bottom: -1px !important;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+label[for=content] {
+    padding-left: 16px;
+}
+
+.form-top-wrapper {
+    font-size: 20px;
+    margin-top: 33px;
 }
