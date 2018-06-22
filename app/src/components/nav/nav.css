@@ -17,4 +17,12 @@ hr {
     border-radius: 5px;
     border: 2px solid white;
     color: white;
+    transition: .3s all ease;
+}
+
+.new-post-button:hover {
+    color: black;
+    background: white;
+    border: 2px solid white;
+    transition: .3s all ease;
 }
