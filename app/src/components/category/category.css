@@ -24,9 +24,14 @@
     margin-left: 15px !important;
     margin-right: 15px !important;
     height: auto;
-    margin-top: 85px;
-    margin-bottom: 20px;
+    margin-bottom: 105px;
     width: 100%;
+}
+
+.posts-container {
+    margin-top: 85px;
+    height: 90%;
+    overflow-y: scroll;
 }
 
 .post {
@@ -41,13 +46,14 @@
     width: 100%;
     padding-bottom: 5px;
     font-size: 20px;
-}
-
-.hr-title {
-    border-color: black !important;
+    margin-bottom: 20px;
 }
 
 .post-body {
     text-align: center;
     width: 100%;
+    padding: 25px 0 25px 0;
+    margin: 0 40px 0 40px;
+    background: #bbbbbb61;
+    border-radius: 3px;
 }

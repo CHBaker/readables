@@ -29,7 +29,7 @@ class Category extends Component {
                     </div>
                     <div className='col'></div>
                 </div>
-                <div className='row'>
+                <div className='row posts-container'>
                     {
                         allPosts[category].map((post) => (
                             <div className='row content-row' key={ post.id }>
@@ -40,7 +40,6 @@ class Category extends Component {
                                             { post.title }
                                         </div>
                                     </div>
-                                    <hr className='hr-title' />
                                     <div className='row'>
                                         <div className='post-body'>
                                             { post.body }
