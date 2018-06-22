@@ -1,7 +1,7 @@
 
 const token = 'super-sofisticated-token';
 const url = 'http://localhost:3001';
-const headers = { 'Accept': 'application/json', 'Authorization': token };
+const headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': token };
 
 export function getAllPosts() {
     return (
@@ -12,14 +12,18 @@ export function getAllPosts() {
 }
 
 export function newPost(post) {
-    console.log(post);
+    console.log('this is the api sending the post, ', JSON.stringify(post));
     return(
-        fetch(`${url}/posts`, {
+        fetch(
+            `${url}/posts`, {
                 method: 'POST',
                 headers : headers,
                 body: JSON.stringify(post)
             }
-        ).then(() => true)
+        ).then((res) => {
+            console.log(res);
+            return true;
+        })
         .catch(error => console.log(error))
     );
 }
