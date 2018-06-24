@@ -32,9 +32,8 @@ class Category extends Component {
                 <div className='row posts-container'>
                     {
                         allPosts[category].map((post) => (
-                            <div className='row content-row' key={ post.id }>
-                                <div className='col'></div>
-                                <div className='col-10 post'>
+                            <div className='content-row' key={ post.id }>
+                                <div className='mx-auto d-block post'>
                                     <div className='row'>
                                         <div className='post-title'>
                                             { post.title }
@@ -46,7 +45,6 @@ class Category extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='col'></div>
                             </div>
                         )
                     )}

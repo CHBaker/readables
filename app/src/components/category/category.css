@@ -32,6 +32,8 @@
     margin-top: 85px;
     height: 90%;
     overflow-y: scroll;
+    padding-left: 8%;
+    padding-right: 8%;
 }
 
 .post {
