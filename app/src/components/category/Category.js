@@ -5,6 +5,7 @@ import './category.css';
 import { deletePost } from '../../actions/index';
 import * as capitalize from '../../utils/capitalize.js';
 import EditPost from '../edit_post/EditPost';
+import Post from '../post/Post';
 
 class Category extends Component {
 
@@ -49,59 +50,11 @@ class Category extends Component {
                 <div className='posts-container'>
                     {
                         allPosts[category].map((post) => (
-                            <div className='mx-auto d-block content-row' key={ post.id }>
-                                <div className='post'>
-                                    <div className='row'>
-                                        <div className='col-2'></div>
-                                        <div className='col post-title'>
-                                            { post.title }
-                                        </div>
-                                        <div className="col-2 crud">
-                                            by: { post.author }
-                                        </div>
-                                    </div>
-                                    <div className='row'>
-                                        <div className='post-body'>
-                                            { post.body }
-                                        </div>
-                                    </div>
-                                    <div className='row post-info'>
-                                        <div className='col-1'></div>
-                                        <div className='col vote-col'>
-                                            <span className='vote'>
-                                                &#9650;
-                                            </span>
-                                            <span className='vote'>
-                                                &#9660;
-                                            </span>
-                                            <span className='votescore'>
-                                                { post.voteScore }
-                                                { !post.voteScore && 1 }
-                                            </span>
-                                        </div>
-                                        <div className='col crud-col'>
-                                            <span>
-                                                <button
-                                                    onClick={ () => this.openEditModal(post) }
-                                                    className='edit'
-                                                >
-                                                    edit
-                                                </button>
-                                            </span>
-                                            |
-                                            <span>
-                                                <button
-                                                    onClick={() => this.deletePost(post) }
-                                                    className='delete'
-                                                >
-                                                    delete
-                                                </button>
-                                            </span>
-                                        </div>
-                                        <div className='col-1'></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <Post
+                                post={post}
+                                openEditModal={this.openEditModal.bind(this)}
+                                deletePost={this.deletePost.bind(this)}
+                            />
                         )
                     )}
                 </div>

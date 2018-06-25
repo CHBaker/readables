@@ -1,0 +1,84 @@
+.posts-container {
+    margin-top: 85px;
+    height: 90%;
+    overflow-y: scroll;
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+.post {
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0px 0px 20px 5px #00000061;
+    padding: 20px 10px 20px 10px;
+}
+
+.post-title {
+    text-align: center;
+    width: 100%;
+    padding-bottom: 5px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.post-body {
+    text-align: center;
+    width: 100%;
+    padding: 25px 0 25px 0;
+    margin: 0 40px 0 40px;
+    background: #bbbbbb61;
+    border-radius: 3px;
+}
+
+.post-info {
+    margin-top: 25px;
+}
+
+.crud-col {
+    text-align: right;
+}
+
+.votescore {
+    margin-left: 10px;
+}
+
+.vote {
+    cursor: pointer;
+}
+
+.upvote {
+    transition: all .3s ease;
+}
+
+.downvote {
+    transition: all .3s ease;
+}
+
+.downvote:hover, .upvote:hover {
+    background: #bbbbbb61;
+    border-radius: 3px;
+}
+
+.edit {
+    margin-right: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.delete {
+    margin-left: 5px;
+}
+
+.edit, .delete {
+    border-radius: 3px;
+    border: 2px solid #bbbbbb61;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.edit:hover, .delete:hover {
+    background: black;
+    border: 2px solid black;
+    color: white;
+    transition: all .3s ease;
+}
