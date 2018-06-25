@@ -12,7 +12,6 @@ export function getAllPosts() {
 }
 
 export function newPost(post) {
-    console.log('this is the api sending the post, ', JSON.stringify(post));
     return(
         fetch(
             `${url}/posts`, {
@@ -21,8 +20,7 @@ export function newPost(post) {
                 body: JSON.stringify(post)
             }
         ).then((res) => {
-            console.log(res);
-            return true;
+            return post;
         })
         .catch(error => console.log(error))
     );

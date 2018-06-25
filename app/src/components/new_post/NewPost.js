@@ -22,6 +22,7 @@ class NewPost extends Component {
         );
 
         this.props.newPost(newPost);
+        this.props.closeModal();
     }
 
     newUID = () => {
@@ -71,7 +72,7 @@ class NewPost extends Component {
                             <div className='col'></div>
                         </div>
                         <div className='form-group row'>
-                            <div className='col post-body'>
+                            <div className='col post-body-input'>
                                 <textarea className='content-input' type='text' name='body'>
                                 </textarea>
                             </div>

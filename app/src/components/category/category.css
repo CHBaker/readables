@@ -59,3 +59,20 @@
     background: #bbbbbb61;
     border-radius: 3px;
 }
+
+.post-info {
+    margin-top: 25px;
+}
+
+.crud-col {
+    text-align: right;
+}
+
+.votescore {
+    margin-left: 10px;
+}
+
+.vote {
+    cursor: pointer;
+}
+

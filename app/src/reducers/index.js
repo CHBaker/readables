@@ -28,14 +28,12 @@ function allPosts(state = initialPostState, action) {
                 node: action.posts.filter((post) => post.category === 'node'),
             };
         case NEW_POST_SUCCESS:
-            return state;
-            // my attempt to add the post
-
-            // const category = action.post.category;
-            // return {
-            //     ...state,
-            //     [category]: [...state[category], action.post]
-            // }
+            console.log('state post, ', action.post);
+            const category = action.post.category;
+            return {
+                ...state,
+                [category]: [...state[category], action.post]
+            }
         default:
             return state;
     }

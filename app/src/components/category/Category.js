@@ -35,14 +35,42 @@ class Category extends Component {
                             <div className='mx-auto d-block content-row' key={ post.id }>
                                 <div className='post'>
                                     <div className='row'>
-                                        <div className='post-title'>
+                                        <div className='col-2'></div>
+                                        <div className='col post-title'>
                                             { post.title }
+                                        </div>
+                                        <div className="col-2 crud">
+                                            by: { post.author }
                                         </div>
                                     </div>
                                     <div className='row'>
                                         <div className='post-body'>
                                             { post.body }
                                         </div>
+                                    </div>
+                                    <div className='row post-info'>
+                                        <div className='col-1'></div>
+                                        <div className='col vote-col'>
+                                            <span className='vote'>
+                                                &#9650;
+                                            </span>
+                                            <span className='vote'>
+                                                &#9660;
+                                            </span>
+                                            <span className='votescore'>
+                                                { post.voteScore }
+                                            </span>
+                                        </div>
+                                        <div className='col crud-col'>
+                                            <span className='edit'>
+                                                edit
+                                            </span>
+                                            |
+                                            <span className='delete'>
+                                                delete
+                                            </span>
+                                        </div>
+                                        <div className='col-1'></div>
                                     </div>
                                 </div>
                             </div>
