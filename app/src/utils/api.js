@@ -49,3 +49,19 @@ export function editPost(post) {
         .catch(error => console.log(error))
     );
 }
+
+export function vote(vote, post) {
+    const postVote = { option: vote };
+    return(
+        fetch(
+            `${url}/posts/${post.id}`, {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(postVote)
+            }
+        ).then(res => {
+            return {vote, post}
+        })
+        .catch(error => console.log(error))
+    );
+}

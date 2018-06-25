@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import {
     POSTS_FETCHED_SUCCESS, NEW_POST_SUCCESS,
-    DELETE_POST_SUCCESS, EDIT_POST_SUCCESS
+    DELETE_POST_SUCCESS, EDIT_POST_SUCCESS, VOTE_POST_SUCCESS
 } from '../actions';
 
 export const initialUserState = {
@@ -49,9 +49,24 @@ function allPosts(state = initialPostState, action) {
             return {
                 ...state,
                 [editedPostCategory]: [...state[editedPostCategory].filter(post => {
-                    if (post === editedPostId) {
+                    if (post.id === editedPostId) {
                         post.title = action.post.title;
                         post.body = action.post.body;
+                        return post
+                    }
+                    return post
+                })]
+            }
+        case VOTE_POST_SUCCESS:
+            const vote = action.postInfo.vote;
+            const votePostId = action.postInfo.post.id;
+            const voteCategory = action.postInfo.post.category;
+            const voteCount = (vote === 'upVote') ? 1 : -1;
+            return {
+                ...state,
+                [voteCategory]: [...state[voteCategory].filter(post => {
+                    if (post.id === votePostId) {
+                        post.voteScore = post.voteScore + voteCount;
                         return post
                     }
                     return post

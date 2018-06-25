@@ -4,6 +4,7 @@ export const POSTS_FETCHED_SUCCESS = 'POSTS_FETCHED_SUCCESS';
 export const NEW_POST_SUCCESS = 'NEW_POST_SUCCESS';
 export const DELETE_POST_SUCCESS = 'DELETE_POST_SUCCESS';
 export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS';
+export const VOTE_POST_SUCCESS = 'VOTE_POST_SUCCESS';
 
 export const fetchPosts = () => dispatch => {
     Api.getAllPosts().then(posts =>
@@ -37,6 +38,15 @@ export const editPost = (post) => dispatch => {
         dispatch({
             type: 'EDIT_POST_SUCCESS',
             post
+        })
+    ).catch(error => console.log(error));
+}
+
+export const votePost = (vote, post) => dispatch => {
+    Api.vote(vote, post).then((postInfo) =>
+        dispatch({
+            type: 'VOTE_POST_SUCCESS',
+            postInfo: { vote: postInfo.vote, post: postInfo.post }
         })
     ).catch(error => console.log(error));
 }

@@ -61,6 +61,7 @@
 
 .edit {
     margin-right: 5px;
+    margin-left: 5px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -69,14 +70,18 @@
     margin-left: 5px;
 }
 
-.edit, .delete {
+.comment-count {
+    margin-right: 5px;
+}
+
+.edit, .delete, .comment-count {
     border-radius: 3px;
     border: 2px solid #bbbbbb61;
     cursor: pointer;
     transition: all .3s ease;
 }
 
-.edit:hover, .delete:hover {
+.edit:hover, .delete:hover, .comment-count:hover {
     background: black;
     border: 2px solid black;
     color: white;

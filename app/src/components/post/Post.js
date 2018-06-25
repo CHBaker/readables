@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import './post.css';
+import { votePost } from '../../actions/index';
 
 class Post extends Component {
     render() {
 
-        const { post, openEditModal, deletePost } = this.props;
+        const {
+            post, openEditModal, deletePost,
+            votePost
+        } = this.props;
 
         return (
             <div className='mx-auto d-block content-row' key={ post.id }>
@@ -26,18 +31,30 @@ class Post extends Component {
                                     <div className='row post-info'>
                                         <div className='col-1'></div>
                                         <div className='col vote-col'>
-                                            <span className='vote upvote'>
+                                            <span
+                                                onClick={ () => votePost('upVote', post)}
+                                                className='vote upvote'
+                                            >
                                                 &#9650;
                                             </span>
-                                            <span className='vote downvote'>
+                                            <span
+                                                onClick={ () => votePost('downVote', post)}
+                                                className='vote downvote'
+                                            >
                                                 &#9660;
                                             </span>
                                             <span className='votescore'>
                                                 { post.voteScore }
-                                                { !post.voteScore && 1 }
                                             </span>
                                         </div>
                                         <div className='col crud-col'>
+                                            <span className='comments-count'>
+                                                <button
+                                                    className='comment-count'
+                                                >
+                                                    comments: { post.commentCount }
+                                                </button>
+                                            </span>
                                             <span>
                                                 <button
                                                     onClick={ () => openEditModal(post) }
@@ -63,4 +80,8 @@ class Post extends Component {
     }
 }
 
-export default Post;
+const mapDispatchToProps = dispatch => ({
+    votePost: (vote, post) => dispatch(votePost(vote, post))
+});
+
+export default connect(null, mapDispatchToProps)(Post);

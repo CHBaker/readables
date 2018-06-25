@@ -51,6 +51,7 @@ class Category extends Component {
                     {
                         allPosts[category].map((post) => (
                             <Post
+                                key={post.id}
                                 post={post}
                                 openEditModal={this.openEditModal.bind(this)}
                                 deletePost={this.deletePost.bind(this)}
