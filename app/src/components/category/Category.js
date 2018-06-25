@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './category.css';
-
+import { deletePost } from '../../actions/index';
 import * as capitalize from '../../utils/capitalize.js';
 
 class Category extends Component {
@@ -13,6 +13,11 @@ class Category extends Component {
 
     componentWillMount() {
         this.setState({ category: this.props.category })
+    }
+
+    deletePost(post) {
+        console.log(post);
+        this.props.deletePost(post);
     }
 
     render() {
@@ -59,6 +64,7 @@ class Category extends Component {
                                             </span>
                                             <span className='votescore'>
                                                 { post.voteScore }
+                                                { !post.voteScore && 1 }
                                             </span>
                                         </div>
                                         <div className='col crud-col'>
@@ -66,8 +72,13 @@ class Category extends Component {
                                                 edit
                                             </span>
                                             |
-                                            <span className='delete'>
-                                                delete
+                                            <span>
+                                                <button
+                                                    onClick={() => this.deletePost(post) }
+                                                    className='delete'
+                                                >
+                                                    delete
+                                                </button>
                                             </span>
                                         </div>
                                         <div className='col-1'></div>
@@ -82,8 +93,12 @@ class Category extends Component {
     }
 }
 
+const mapDispatchToProps = dispatch => ({
+    deletePost: (post) => dispatch(deletePost(post))
+});
+
 const mapStateToProps = state => ({
     allPosts: state.allPosts
 });
 
-export default withRouter(connect(mapStateToProps)(Category));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Category));

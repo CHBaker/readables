@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { POSTS_FETCHED_SUCCESS, NEW_POST_SUCCESS } from '../actions';
+import { POSTS_FETCHED_SUCCESS, NEW_POST_SUCCESS, DELETE_POST_SUCCESS } from '../actions';
 
 export const initialUserState = {
     user : null,
@@ -28,11 +28,17 @@ function allPosts(state = initialPostState, action) {
                 node: action.posts.filter((post) => post.category === 'node'),
             };
         case NEW_POST_SUCCESS:
-            console.log('state post, ', action.post);
-            const category = action.post.category;
+            const NEW_POST_CATEGORY = action.post.category;
             return {
                 ...state,
-                [category]: [...state[category], action.post]
+                [NEW_POST_CATEGORY]: [...state[NEW_POST_CATEGORY], action.post]
+            }
+        case DELETE_POST_SUCCESS:
+            const POST_ID = action.post.id;
+            const DELETE_CATEGORY = action.post.category;
+            return {
+                ...state,
+                [DELETE_CATEGORY]: [...state[DELETE_CATEGORY].filter(post => post.id !== POST_ID)]
             }
         default:
             return state;

@@ -19,9 +19,19 @@ export function newPost(post) {
                 headers : headers,
                 body: JSON.stringify(post)
             }
-        ).then((res) => {
-            return post;
-        })
+        ).then((res) => post)
+        .catch(error => console.log(error))
+    );
+}
+
+export function deletePost(post) {
+    return(
+        fetch(
+            `${url}/posts/${post.id}`, {
+                method: 'DELETE',
+                headers: headers
+            }
+        ).then((res) => post)
         .catch(error => console.log(error))
     );
 }
