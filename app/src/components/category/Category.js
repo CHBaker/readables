@@ -4,11 +4,14 @@ import { connect } from 'react-redux';
 import './category.css';
 import { deletePost } from '../../actions/index';
 import * as capitalize from '../../utils/capitalize.js';
+import EditPost from '../edit_post/EditPost';
 
 class Category extends Component {
 
     state = {
-        category: ''
+        category: '',
+        editModalOpen: false,
+        editPost: null
     }
 
     componentWillMount() {
@@ -20,9 +23,18 @@ class Category extends Component {
         this.props.deletePost(post);
     }
 
+    openEditModal(post) {
+        this.setState({ editPost: post });
+        this.setState({ editModalOpen: true });
+    }
+
+    closeEditModal() {
+        this.setState({ editModalOpen: false });
+    }
+
     render() {
 
-        const { category } = this.state;
+        const { category, editPost, editModalOpen } = this.state;
         const { allPosts } = this.props;
 
         return (
@@ -68,8 +80,13 @@ class Category extends Component {
                                             </span>
                                         </div>
                                         <div className='col crud-col'>
-                                            <span className='edit'>
-                                                edit
+                                            <span>
+                                                <button
+                                                    onClick={ () => this.openEditModal(post) }
+                                                    className='edit'
+                                                >
+                                                    edit
+                                                </button>
                                             </span>
                                             |
                                             <span>
@@ -88,6 +105,13 @@ class Category extends Component {
                         )
                     )}
                 </div>
+                {
+                    editModalOpen &&
+                    <EditPost
+                        post={editPost}
+                        closeModal={this.closeEditModal.bind(this)}
+                    />
+                }
             </div>
         )
     }

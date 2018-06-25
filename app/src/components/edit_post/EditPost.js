@@ -1,70 +1,55 @@
 import React, { Component } from 'react';
-import './newPost.css';
+import './editPost.css';
 import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
-import { newPost } from '../../actions/index';
-import { NewPostType } from '../../types/types';
+import { editPost } from '../../actions/index';
 
-class NewPost extends Component {
+class EditPost extends Component {
 
-    state = {
-        category: 'react'
+    componentWillMount() {
+        this.setState({ post: this.props.post });
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         const values = serializeForm(e.target, { hash: true});
-        values.category = this.state.category;
+        let editedPost = this.props.post;
+        editedPost.title = values.title;
+        editedPost.body = values.body;
 
-        const newPost = new NewPostType(
-            this.newUID(), Date.now(), values.title,
-            values.body, 'bob', values.category
-        );
-
-        this.props.newPost(newPost);
+        this.props.editPost(editedPost);
         this.props.closeModal();
     }
 
-    newUID = () => {
-        return Math.floor(Math.random()*8999999999999999+1000000000000000);
-    }
-
-    changeCategory = (e) => {
-        this.setState({ category: e.target.value })
-    }
-
     render() {
-        const { category } = this.state;
-        const { closeModal } = this.props;
+        const { closeModal, post } = this.props;
 
         return (
             <div>
                 <div
                     onClick={ () => closeModal() }
-                    className='veil'
+                    className='edit-veil'
                 ></div>
-                <div className='new-post-wrapper'>
+                <div className='edit-post-wrapper'>
                     <form onSubmit={this.handleSubmit} className='new-post-form'>
                         <div className='form-group row'>
                             <div className='col form-title'>
-                                New Post
+                                Edit Post
                             </div>
                         </div>
                         <hr className='new-post-hr' />
                         <div className='form-group row form-top-wrapper'>
                             <label htmlFor="title" className="col-1 col-form-label">Title</label>
                             <div className="col-4">
-                                <input type="text" name="title" className="form-control" placeholder="title" />
+                                <input
+                                    defaultValue={ post.title }
+                                    type="text"
+                                    name="title"
+                                    className="form-control"
+                                />
                             </div>
                             <div className='col'></div>
-                            <label htmlFor="category" className="col-2 col-form-label">Category</label>
                             <div className="col-4">
-                                <select className='form-control' value={category} onChange={this.changeCategory}>
-                                    <option value='react'>React</option>
-                                    <option value='redux'>Redux</option>
-                                    <option value='udacity'>Udacity</option>
-                                    <option value='node'>Node</option>
-                                </select>
                             </div>
                         </div>
                         <div className='form-group row content-wrapper'>
@@ -73,15 +58,20 @@ class NewPost extends Component {
                         </div>
                         <div className='form-group row'>
                             <div className='col post-body-input'>
-                                <textarea className='content-input' type='text' name='body'>
+                                <textarea
+                                    defaultValue={ post.body }
+                                    className='content-input'
+                                    type='text'
+                                    name='body'
+                                >
                                 </textarea>
                             </div>
                         </div>
                         <div className='form-group row'>
                             <div className='col'></div>
                             <div className='col button-col'>
-                                <button type='submit' value="submit" className='btn btn-group btn-primary post-btn'>
-                                    POST
+                                <button type='submit' value="submit" className='btn btn-group btn-primary edit-btn'>
+                                    UPDATE
                                 </button>
                             </div>
                             <div className='col'></div>
@@ -94,11 +84,7 @@ class NewPost extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    newPost: (post) => dispatch(newPost(post))
+    editPost: (post) => dispatch(editPost(post))
 });
 
-const mapStateToProps = state => ({
-    posts: state.allPosts.posts
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewPost);
+export default connect(null, mapDispatchToProps)(EditPost);

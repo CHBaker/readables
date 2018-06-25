@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
-import { POSTS_FETCHED_SUCCESS, NEW_POST_SUCCESS, DELETE_POST_SUCCESS } from '../actions';
+import {
+    POSTS_FETCHED_SUCCESS, NEW_POST_SUCCESS,
+    DELETE_POST_SUCCESS, EDIT_POST_SUCCESS
+} from '../actions';
 
 export const initialUserState = {
     user : null,
@@ -28,17 +31,31 @@ function allPosts(state = initialPostState, action) {
                 node: action.posts.filter((post) => post.category === 'node'),
             };
         case NEW_POST_SUCCESS:
-            const NEW_POST_CATEGORY = action.post.category;
+            const newPostCategory = action.post.category;
             return {
                 ...state,
-                [NEW_POST_CATEGORY]: [...state[NEW_POST_CATEGORY], action.post]
+                [newPostCategory]: [...state[newPostCategory], action.post]
             }
         case DELETE_POST_SUCCESS:
-            const POST_ID = action.post.id;
-            const DELETE_CATEGORY = action.post.category;
+            const deletePostId = action.post.id;
+            const deleteCategory = action.post.category;
             return {
                 ...state,
-                [DELETE_CATEGORY]: [...state[DELETE_CATEGORY].filter(post => post.id !== POST_ID)]
+                [deleteCategory]: [...state[deleteCategory].filter(post => post.id !== deletePostId)]
+            }
+        case EDIT_POST_SUCCESS:
+            const editedPostId = action.post.id;
+            const editedPostCategory = action.post.category;
+            return {
+                ...state,
+                [editedPostCategory]: [...state[editedPostCategory].filter(post => {
+                    if (post === editedPostId) {
+                        post.title = action.post.title;
+                        post.body = action.post.body;
+                        return post
+                    }
+                    return post
+                })]
             }
         default:
             return state;

@@ -19,7 +19,7 @@ export function newPost(post) {
                 headers : headers,
                 body: JSON.stringify(post)
             }
-        ).then((res) => post)
+        ).then(res => post)
         .catch(error => console.log(error))
     );
 }
@@ -31,7 +31,21 @@ export function deletePost(post) {
                 method: 'DELETE',
                 headers: headers
             }
-        ).then((res) => post)
+        ).then(res => post)
+        .catch(error => console.log(error))
+    );
+}
+
+export function editPost(post) {
+    const editedPost = { title: post.title, body: post.body };
+    return(
+        fetch(
+            `${url}/posts/${post.id}`, {
+                method: 'PUT',
+                headers: headers,
+                body: JSON.stringify(editedPost)
+            }
+        ).then(res => post)
         .catch(error => console.log(error))
     );
 }
