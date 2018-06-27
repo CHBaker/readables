@@ -32,9 +32,11 @@ function allPosts(state = initialPostState, action) {
             };
         case NEW_POST_SUCCESS:
             const newPostCategory = action.post.category;
+            const newPost = action.post;
+            newPost.voteScore = 0;
             return {
                 ...state,
-                [newPostCategory]: [...state[newPostCategory], action.post]
+                [newPostCategory]: [...state[newPostCategory], newPost]
             }
         case DELETE_POST_SUCCESS:
             const deletePostId = action.post.id;
