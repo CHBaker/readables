@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import {
     POSTS_FETCHED_SUCCESS, NEW_POST_SUCCESS,
-    DELETE_POST_SUCCESS, EDIT_POST_SUCCESS, VOTE_POST_SUCCESS
+    DELETE_POST_SUCCESS, EDIT_POST_SUCCESS, VOTE_POST_SUCCESS,
+    GET_POST_SUCCESS
 } from '../actions';
 
 export const initialUserState = {
@@ -24,12 +25,23 @@ function allPosts(state = initialPostState, action) {
     switch (action.type) {
         case POSTS_FETCHED_SUCCESS:
             return {
-                allposts: action.posts,
-                redux: action.posts.filter((post) => post.category === 'redux'),
-                react: action.posts.filter((post) => post.category === 'react'),
-                udacity: action.posts.filter((post) => post.category === 'udacity'),
-                node: action.posts.filter((post) => post.category === 'node'),
+                ...state,
+                allPosts: [...action.posts],
+                redux: [...action.posts.filter((post) => post.category === 'redux')],
+                react: [...action.posts.filter((post) => post.category === 'react')],
+                udacity: [...action.posts.filter((post) => post.category === 'udacity')],
+                node: [...action.posts.filter((post) => post.category === 'node')],
             };
+        case GET_POST_SUCCESS:
+            console.log(state)
+            const getPostCategory = action.post.category;
+            const getPostId = action.post.id;
+            const fetchedPost = action.post;
+            return {
+                ...state,
+                allPosts: [...state.allPosts.filter(post => post.id !== action.post.id), {...fetchedPost}],
+                [getPostCategory]: [...state[getPostCategory].filter(post => post.id !== getPostId), {...fetchedPost}]
+            }
         case NEW_POST_SUCCESS:
             const newPostCategory = action.post.category;
             const newPost = action.post;

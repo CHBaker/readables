@@ -3,10 +3,12 @@ import './postDetail.css';
 import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { getPost } from '../../actions/index';
 
 class PostDetail extends Component {
 
     componentWillMount() {
+        this.props.getPost(this.props.postId);
         console.log(this.props)
     }
 
@@ -18,6 +20,68 @@ class PostDetail extends Component {
 
         return (
             <div>
+                <div className='post-detail'>
+                    <div className='row'>
+                        <div className='col-2'></div>
+                        <div className='col post-title'>
+                            
+                        </div>
+                        <div className="col-2 crud">
+                            by: 
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='post-body'>
+                            
+                        </div>
+                    </div>
+                    <div className='row post-info'>
+                        <div className='col-1'></div>
+                        <div className='col vote-col'>
+                            <span
+                                
+                                className='vote upvote'
+                            >
+                                &#9650;
+                            </span>
+                            <span
+                                
+                                className='vote downvote'
+                            >
+                                &#9660;
+                            </span>
+                            <span className='votescore'>
+                                
+                            </span>
+                        </div>
+                        <div className='col crud-col'>
+                            <span className='comments-count'>
+                                <button
+                                    className='comment-count'
+                                >
+                                    
+                                </button>
+                            </span>
+                            <span>
+                                <button
+                                    
+                                    className='edit'
+                                >
+                                    edit
+                                </button>
+                            </span>
+                            <span>
+                                <button
+                                    
+                                    className='delete'
+                                >
+                                    delete
+                                </button>
+                            </span>
+                        </div>
+                        <div className='col-1'></div>
+                    </div>
+                </div>
                 <form onSubmit={this.handleSubmit} className='comment-form'>
                     <div className='form-group row'>
                         <div className='col comment-form-title'>
@@ -45,4 +109,12 @@ class PostDetail extends Component {
     }
 }
 
-export default connect(null, null)(PostDetail);
+const mapDispatchToProps = dispatch => ({
+    getPost: (postId) => dispatch(getPost(postId))
+});
+
+const mapStateToProps = (state, ownProps) => ({
+    post: state.allPosts[ownProps.postId]
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);

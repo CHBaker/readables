@@ -11,6 +11,19 @@ export function getAllPosts() {
     );
 }
 
+export function getPost(postId) {
+    console.log(postId)
+    return (
+        fetch(
+            `${url}/posts/${postId}`, {
+                method: 'GET',
+                headers : headers
+            }
+        ).then(res => res.json())
+        .catch(error => console.log(error))
+    )
+}
+
 export function newPost(post) {
     return(
         fetch(

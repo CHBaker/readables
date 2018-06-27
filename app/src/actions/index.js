@@ -1,6 +1,7 @@
 import * as Api from '../utils/api';
 
 export const POSTS_FETCHED_SUCCESS = 'POSTS_FETCHED_SUCCESS';
+export const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
 export const NEW_POST_SUCCESS = 'NEW_POST_SUCCESS';
 export const DELETE_POST_SUCCESS = 'DELETE_POST_SUCCESS';
 export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS';
@@ -14,6 +15,15 @@ export const fetchPosts = () => dispatch => {
         })
     ).catch(error => console.log(error));
 };
+
+export const getPost = (postId) => dispatch => {
+    Api.getPost(postId).then(post =>
+        dispatch({
+            type: 'POST_FETCHED_SUCCESS',
+            post
+        })
+    ).catch(error => console.log(error));
+}
 
 export const newPost = (post) => dispatch => {
     Api.newPost(post).then(post =>
