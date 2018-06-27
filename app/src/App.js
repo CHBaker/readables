@@ -8,6 +8,7 @@ import Nav from './components/nav/Nav';
 import Main from './components/main/Main';
 import Category from './components/category/Category';
 import { fetchPosts } from './actions/index'
+import PostDetail from './components/postDetail/PostDetail';
 
 class App extends Component {
 
@@ -63,6 +64,14 @@ class App extends Component {
                     <div className='col node-category'>
                         <Category
                             category='node'
+                        />
+                    </div>
+                )} />
+                <Route exact path='/:category/:postId' render={( {match }) => (
+                    <div className='col post-detail'>
+                        <PostDetail
+                            category={match.params.category}
+                            postId={match.params.postId}
                         />
                     </div>
                 )} />

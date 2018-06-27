@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import './post.css';
 import { votePost } from '../../actions/index';
+import { Link } from 'react-router-dom';
 
 class Post extends Component {
     render() {
@@ -17,7 +18,9 @@ class Post extends Component {
                                     <div className='row'>
                                         <div className='col-2'></div>
                                         <div className='col post-title'>
-                                            { post.title }
+                                            <Link to={`/${post.category}/${post.id}`}>
+                                                { post.title }
+                                            </Link>
                                         </div>
                                         <div className="col-2 crud">
                                             by: { post.author }
