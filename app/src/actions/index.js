@@ -1,4 +1,4 @@
-import * as Api from '../utils/Api';
+import * as Api from '../utils/api';
 
 export const POSTS_FETCHED_SUCCESS = 'POSTS_FETCHED_SUCCESS';
 export const NEW_POST_SUCCESS = 'NEW_POST_SUCCESS';
