@@ -8,7 +8,7 @@ import { getPost } from '../../actions/index';
 class PostDetail extends Component {
 
     componentWillMount() {
-        this.props.getPost(this.props.postId);
+        this.props.getPost(this.props.match.params.postId);
         console.log(this.props)
     }
 
@@ -24,7 +24,7 @@ class PostDetail extends Component {
                     <div className='row'>
                         <div className='col-2'></div>
                         <div className='col post-title'>
-                            
+                            { this.props.post }
                         </div>
                         <div className="col-2 crud">
                             by: 
@@ -114,7 +114,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = (state, ownProps) => ({
-    post: state.allPosts[ownProps.postId]
+    post: state.allPosts.allPosts[ownProps.match.params.postId]
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetail));

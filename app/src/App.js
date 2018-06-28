@@ -67,12 +67,9 @@ class App extends Component {
                         />
                     </div>
                 )} />
-                <Route exact path='/:category/:postId' render={( {match }) => (
+                <Route exact path='/:category/:postId' render={() => (
                     <div className='col post-detail'>
-                        <PostDetail
-                            category={match.params.category}
-                            postId={match.params.postId}
-                        />
+                        <PostDetail />
                     </div>
                 )} />
             </div>

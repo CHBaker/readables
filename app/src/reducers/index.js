@@ -46,6 +46,7 @@ function allPosts(state = initialPostState, action) {
             const newPostCategory = action.post.category;
             const newPost = action.post;
             newPost.voteScore = 0;
+            console.log('current state ', state)
             return {
                 ...state,
                 [newPostCategory]: [...state[newPostCategory], newPost]

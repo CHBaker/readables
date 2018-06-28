@@ -19,7 +19,7 @@ export const fetchPosts = () => dispatch => {
 export const getPost = (postId) => dispatch => {
     Api.getPost(postId).then(post =>
         dispatch({
-            type: 'POST_FETCHED_SUCCESS',
+            type: 'GET_POST_SUCCESS',
             post
         })
     ).catch(error => console.log(error));
