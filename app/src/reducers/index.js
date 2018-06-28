@@ -65,7 +65,9 @@ function allPosts(state = initialPostState, action) {
             const deleteCategory = action.post.category;
             return {
                 ...state,
-                [deleteCategory]: [...state[deleteCategory].filter(post => post.id !== deletePostId)]
+                allPosts: [...state.allPosts.filter(post => post.id != deletePostId)],
+                [deleteCategory]: [...state[deleteCategory].filter(post => post.id !== deletePostId)],
+                currentPost: {}
             }
         case EDIT_POST_SUCCESS:
             const editedPost = action.post;
@@ -95,8 +97,11 @@ function allPosts(state = initialPostState, action) {
         case NEW_COMMENT_SUCCESS:
             const comment = action.comment;
             comment.voteScore = 0;
+            const parent = state.currentPost
+            parent.commentCount += 1;
             return {
                 ...state,
+                currentPost: {...parent},
                 currentComments: [comment, ...state.currentComments]
             }
         default:

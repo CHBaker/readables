@@ -222,6 +222,7 @@ class PostDetail extends Component {
 const mapDispatchToProps = dispatch => ({
     getPost: (postId) => dispatch(getPost(postId)),
     votePost: (post, vote) => dispatch(votePost(post, vote)),
+    deletePost: (post) => dispatch(deletePost(post)),
     getComments: (postId) => dispatch(getComments(postId)),
     newComment: (comment) => dispatch(newComment(comment))
 });
