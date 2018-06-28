@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 import {
     POSTS_FETCHED_SUCCESS, NEW_POST_SUCCESS,
     DELETE_POST_SUCCESS, EDIT_POST_SUCCESS, VOTE_POST_SUCCESS,
-    GET_POST_SUCCESS
+    GET_POST_SUCCESS,
+    GET_COMMENTS_SUCCESS
 } from '../actions';
 
 export const initialUserState = {
@@ -18,7 +19,9 @@ const initialPostState = {
     redux: [],
     react: [],
     udacity: [],
-    node: []
+    node: [],
+    currentPost: {},
+    currentComments: []
 }
 
 function allPosts(state = initialPostState, action) {
@@ -33,20 +36,25 @@ function allPosts(state = initialPostState, action) {
                 node: [...action.posts.filter((post) => post.category === 'node')],
             };
         case GET_POST_SUCCESS:
-            console.log(state)
             const getPostCategory = action.post.category;
             const getPostId = action.post.id;
-            const fetchedPost = action.post;
+            const fetchedPost = {...action.post};
             return {
                 ...state,
-                allPosts: [...state.allPosts.filter(post => post.id !== action.post.id), {...fetchedPost}],
-                [getPostCategory]: [...state[getPostCategory].filter(post => post.id !== getPostId), {...fetchedPost}]
+                allPosts: [...state.allPosts.filter(post => {return post.id !== action.post.id} ), fetchedPost],
+                [getPostCategory]: [...state[getPostCategory].filter(post => post.id !== getPostId), fetchedPost],
+                currentPost: fetchedPost
+            }
+        case GET_COMMENTS_SUCCESS:
+            const comments = action.comments;
+            return {
+                ...state,
+                currentComments: comments
             }
         case NEW_POST_SUCCESS:
             const newPostCategory = action.post.category;
             const newPost = action.post;
             newPost.voteScore = 0;
-            console.log('current state ', state)
             return {
                 ...state,
                 [newPostCategory]: [...state[newPostCategory], newPost]
@@ -62,7 +70,6 @@ function allPosts(state = initialPostState, action) {
             const editedPostId = action.post.id;
             const editedPostCategory = action.post.category;
             return {
-                ...state,
                 [editedPostCategory]: [...state[editedPostCategory].filter(post => {
                     if (post.id === editedPostId) {
                         post.title = action.post.title;

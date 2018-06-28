@@ -12,7 +12,6 @@ export function getAllPosts() {
 }
 
 export function getPost(postId) {
-    console.log(postId)
     return (
         fetch(
             `${url}/posts/${postId}`, {
@@ -22,6 +21,18 @@ export function getPost(postId) {
         ).then(res => res.json())
         .catch(error => console.log(error))
     )
+}
+
+export function getComments(postId) {
+    return(
+        fetch(
+            `${url}/posts/${postId}/comments`, {
+                method: 'GET',
+                headers : headers
+            }
+        ).then(res => res.json())
+        .catch(error => console.log(error))
+    );
 }
 
 export function newPost(post) {

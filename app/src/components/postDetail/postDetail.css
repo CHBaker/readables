@@ -65,7 +65,55 @@ label[for=content] {
     padding-left: 16px;
 }
 
+.post-detail {
+    margin-bottom: 55px;
+}
+
+.post-detail-wrapper {
+    padding-top: 55px;
+}
+
+.comment-hr {
+    border-top: 3px solid black !important;
+}
+
 .form-top-wrapper {
     font-size: 20px;
     margin-top: 33px;
+}
+
+.comment-form-title {
+    text-align: center;
+    font-size: 25px;
+}
+
+.comment-input {
+    width: 65%;
+    height: 100px;
+    margin-left: auto;
+    display: block;
+    margin-right: auto;
+    resize: none;
+    border: 2px solid black;
+    border-radius: 3px;
+}
+
+.comments-wrapper {
+    padding: 50px 10% 0 10%;
+}
+
+.comment {
+    width: 100%;
+    border: 2px solid #bbbbbb61;
+    border-radius: 3px;
+    margin-bottom: 25px;
+    padding: 15px 15px 15px 15px;
+}
+
+.comment-crud-col {
+    text-align: left;
+}
+
+.comment-info {
+    margin-top: 15px;
 }
