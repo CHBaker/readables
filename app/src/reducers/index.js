@@ -4,7 +4,8 @@ import {
     DELETE_POST_SUCCESS, EDIT_POST_SUCCESS, VOTE_POST_SUCCESS,
     GET_POST_SUCCESS,
     GET_COMMENTS_SUCCESS,
-    NEW_COMMENT_SUCCESS
+    NEW_COMMENT_SUCCESS,
+    EDIT_COMMENT_SUCCESS
 } from '../actions';
 
 export const initialUserState = {
@@ -65,20 +66,19 @@ function allPosts(state = initialPostState, action) {
             const deleteCategory = action.post.category;
             return {
                 ...state,
-                allPosts: [...state.allPosts.filter(post => post.id != deletePostId)],
+                allPosts: [...state.allPosts.filter(post => post.id !== deletePostId)],
                 [deleteCategory]: [...state[deleteCategory].filter(post => post.id !== deletePostId)],
                 currentPost: {}
             }
         case EDIT_POST_SUCCESS:
             const editedPost = action.post;
-            const editedPostId = action.post.id;
             const editedPostCategory = action.post.category;
             editedPost.title = action.post.title;
             editedPost.body = action.post.body;
             return {
                 ...state,
-                allPosts: [editedPost, ...state.allPosts.filter(post => post.id != editedPost.id)],
-                [editedPostCategory]: [editedPost, ...state[editedPostCategory].filter(post => post.id != editedPost.id)],
+                allPosts: [editedPost, ...state.allPosts.filter(post => post.id !== editedPost.id)],
+                [editedPostCategory]: [editedPost, ...state[editedPostCategory].filter(post => post.id !== editedPost.id)],
                 currentPost: {...editedPost}
             }
         case VOTE_POST_SUCCESS:
@@ -103,6 +103,11 @@ function allPosts(state = initialPostState, action) {
                 ...state,
                 currentPost: {...parent},
                 currentComments: [comment, ...state.currentComments]
+            }
+        case EDIT_COMMENT_SUCCESS:
+            return {
+                ...state,
+                currentComments: [action.comment, ...state.currentComments.filter(comment => comment.id !== action.comment.id)]
             }
         default:
             return state;

@@ -6,11 +6,14 @@ import { withRouter } from 'react-router-dom';
 import { getPost, getComments, newComment, votePost, deletePost } from '../../actions/index';
 import { NewCommentType } from '../../types/types';
 import EditPost from '../edit_post/EditPost';
+import EditComment from '../edit_comment/EditComment';
 
 class PostDetail extends Component {
 
     state = {
-        editModalOpen: false
+        editModalOpen: false,
+        commentModalOpen: false,
+        comment: null
     }
 
     componentWillMount() {
@@ -25,14 +28,15 @@ class PostDetail extends Component {
             this.newUID(), Date.now(), values.body,
             'bob', this.props.match.params.postId
         );
-        this.props.newComment(comment)
+        this.props.newComment(comment);
+        this.commentFormRef.reset();
     }
 
     newUID = () => {
         return Math.floor(Math.random()*8999999999999999+1000000000000000).toString();
     }
 
-    openEditModal(post) {
+    openEditModal() {
         this.setState({ editModalOpen: true });
     }
 
@@ -45,14 +49,22 @@ class PostDetail extends Component {
         this.props.deletePost(post);
     }
 
+    openCommentEditModal(comment) {
+        this.setState({ commentModalOpen: true, comment: comment });
+    }
+
+    closeCommentEditModal() {
+        this.setState({ commentModalOpen: false });
+    }
+
     render() {
 
-        const { post, comments, votePost,
-                editPost,
-        } = this.props;
+        const { post, comments, votePost } = this.props;
 
         const {
-            editModalOpen
+            editModalOpen,
+            commentModalOpen,
+            comment
         } = this.state;
 
         return (
@@ -123,7 +135,11 @@ class PostDetail extends Component {
                             </div>
                         </div>
                         <hr className='comment-hr' />
-                        <form onSubmit={this.handleSubmit} className='comment-form'>
+                        <form
+                            ref={(el) => this.commentFormRef = el}
+                            onSubmit={this.handleSubmit}
+                            className='comment-form'
+                        >
                             <div className='form-group row'>
                                 <div className='col comment-form-title'>
                                     Comment
@@ -178,7 +194,7 @@ class PostDetail extends Component {
                                             <div className='col-3 comment-crud-col'>
                                                 <span>
                                                     <button
-                                                        
+                                                        onClick={ () => this.openCommentEditModal(comment) }
                                                         className='edit'
                                                     >
                                                         edit
@@ -212,6 +228,13 @@ class PostDetail extends Component {
                     <EditPost
                         post={post}
                         closeModal={this.closeEditModal.bind(this)}
+                    />
+                }
+                {
+                    commentModalOpen &&
+                    <EditComment
+                        comment={comment}
+                        closeModal={this.closeCommentEditModal.bind(this)}
                     />
                 }
             </div>

@@ -102,3 +102,18 @@ export function newComment(comment) {
         .catch(error => console.log(error))
     );
 }
+
+export function editComment(comment) {
+    comment.timestamp = Date.now()
+    const newComment = { timestamp: comment.timestamp, body: comment.body };
+    return(
+        fetch(
+            `${url}/comments/${comment.id}`, {
+                method: 'PUT',
+                headers: headers,
+                body: JSON.stringify(newComment)
+            }
+        ).then(res => comment)
+        .catch(error => console.log(error))
+    );
+}
