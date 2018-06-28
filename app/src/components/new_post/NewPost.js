@@ -26,7 +26,7 @@ class NewPost extends Component {
     }
 
     newUID = () => {
-        return Math.floor(Math.random()*8999999999999999+1000000000000000);
+        return Math.floor(Math.random()*8999999999999999+1000000000000000).toString();
     }
 
     changeCategory = (e) => {

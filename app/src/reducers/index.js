@@ -3,7 +3,8 @@ import {
     POSTS_FETCHED_SUCCESS, NEW_POST_SUCCESS,
     DELETE_POST_SUCCESS, EDIT_POST_SUCCESS, VOTE_POST_SUCCESS,
     GET_POST_SUCCESS,
-    GET_COMMENTS_SUCCESS
+    GET_COMMENTS_SUCCESS,
+    NEW_COMMENT_SUCCESS
 } from '../actions';
 
 export const initialUserState = {
@@ -57,7 +58,7 @@ function allPosts(state = initialPostState, action) {
             newPost.voteScore = 0;
             return {
                 ...state,
-                [newPostCategory]: [...state[newPostCategory], newPost]
+                [newPostCategory]: [newPost, ...state[newPostCategory]]
             }
         case DELETE_POST_SUCCESS:
             const deletePostId = action.post.id;
@@ -93,6 +94,12 @@ function allPosts(state = initialPostState, action) {
                     }
                     return post
                 })]
+            }
+        case NEW_COMMENT_SUCCESS:
+            const comment = action.comment;
+            return {
+                ...state,
+                currentComments: [comment, ...state.currentComments]
             }
         default:
             return state;

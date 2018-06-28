@@ -89,3 +89,16 @@ export function vote(vote, post) {
         .catch(error => console.log(error))
     );
 }
+
+export function newComment(comment) {
+    return(
+        fetch(
+            `${url}/comments`, {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(comment)
+            }
+        ).then(res => comment)
+        .catch(error => console.log(error))
+    );
+}

@@ -3,7 +3,8 @@ import './postDetail.css';
 import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getPost, getComments } from '../../actions/index';
+import { getPost, getComments, newComment } from '../../actions/index';
+import { NewCommentType } from '../../types/types';
 
 class PostDetail extends Component {
 
@@ -13,11 +14,25 @@ class PostDetail extends Component {
 
     componentWillMount() {
         this.props.getPost(this.props.match.params.postId);
-        this.props.getComments(this.props.match.params.postId);
+        //this.props.getComments(this.props.match.params.postId);
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+    }
     handleSubmit = (e) => {
         e.preventDefault();
+        const values = serializeForm(e.target, { hash: true});
+        const comment = new NewCommentType(
+            this.newUID(), Date.now(), values.body,
+            'bob', this.props.match.params.postId
+        );
+        console.log(comment)
+        this.props.newComment(comment)
+    }
+
+    newUID = () => {
+        return Math.floor(Math.random()*8999999999999999+1000000000000000).toString();
     }
 
     render() {
@@ -114,7 +129,7 @@ class PostDetail extends Component {
                                 <div className='col'></div>
                             </div>
                         </form>
-                        <div className='row comments-wrapper'>
+                        <div className='comments-wrapper'>
                             {   comments &&
                                 comments.map(comment => (
                                     <div className='comment' key={ comment.id }>
@@ -183,7 +198,8 @@ class PostDetail extends Component {
 
 const mapDispatchToProps = dispatch => ({
     getPost: (postId) => dispatch(getPost(postId)),
-    getComments: (postId) => dispatch(getComments(postId))
+    getComments: (postId) => dispatch(getComments(postId)),
+    newComment: (comment) => dispatch(newComment(comment))
 });
 
 const mapStateToProps = state => ({
