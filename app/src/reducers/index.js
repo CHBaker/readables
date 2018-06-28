@@ -68,17 +68,16 @@ function allPosts(state = initialPostState, action) {
                 [deleteCategory]: [...state[deleteCategory].filter(post => post.id !== deletePostId)]
             }
         case EDIT_POST_SUCCESS:
+            const editedPost = action.post;
             const editedPostId = action.post.id;
             const editedPostCategory = action.post.category;
+            editedPost.title = action.post.title;
+            editedPost.body = action.post.body;
             return {
-                [editedPostCategory]: [...state[editedPostCategory].filter(post => {
-                    if (post.id === editedPostId) {
-                        post.title = action.post.title;
-                        post.body = action.post.body;
-                        return post
-                    }
-                    return post
-                })]
+                ...state,
+                allPosts: [editedPost, ...state.allPosts.filter(post => post.id != editedPost.id)],
+                [editedPostCategory]: [editedPost, ...state[editedPostCategory].filter(post => post.id != editedPost.id)],
+                currentPost: {...editedPost}
             }
         case VOTE_POST_SUCCESS:
             const vote = action.postInfo.vote;

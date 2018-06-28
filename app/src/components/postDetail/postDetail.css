@@ -99,7 +99,7 @@ label[for=content] {
 }
 
 .comments-wrapper {
-    padding: 50px 10% 0 10%;
+    padding: 20px 10% 0 10%;
     overflow-y: scroll;
     overflow-x: hidden;
     height: 415px;

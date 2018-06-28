@@ -3,13 +3,14 @@ import './postDetail.css';
 import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getPost, getComments, newComment, votePost } from '../../actions/index';
+import { getPost, getComments, newComment, votePost, deletePost } from '../../actions/index';
 import { NewCommentType } from '../../types/types';
+import EditPost from '../edit_post/EditPost';
 
 class PostDetail extends Component {
 
     state = {
-        loading: true
+        editModalOpen: false
     }
 
     componentWillMount() {
@@ -31,9 +32,28 @@ class PostDetail extends Component {
         return Math.floor(Math.random()*8999999999999999+1000000000000000).toString();
     }
 
+    openEditModal(post) {
+        this.setState({ editModalOpen: true });
+    }
+
+    closeEditModal() {
+        this.setState({ editModalOpen: false });
+    }
+
+    deletePost(post) {
+        console.log(post);
+        this.props.deletePost(post);
+    }
+
     render() {
 
-        const { post, comments, votePost } = this.props;
+        const { post, comments, votePost,
+                editPost,
+        } = this.props;
+
+        const {
+            editModalOpen
+        } = this.state;
 
         return (
             <div className='post-detail-wrapper'>
@@ -84,7 +104,7 @@ class PostDetail extends Component {
                                     </span>
                                     <span>
                                         <button
-                                            
+                                            onClick={ () => this.openEditModal(post) }
                                             className='edit'
                                         >
                                             edit
@@ -92,7 +112,7 @@ class PostDetail extends Component {
                                     </span>
                                     <span>
                                         <button
-                                            
+                                            onClick={() => this.deletePost(post) }
                                             className='delete'
                                         >
                                             delete
@@ -186,6 +206,13 @@ class PostDetail extends Component {
                     <div>
                         <h1> POST NOT FOUND </h1>
                     </div>
+                }
+                {
+                    editModalOpen &&
+                    <EditPost
+                        post={post}
+                        closeModal={this.closeEditModal.bind(this)}
+                    />
                 }
             </div>
         )
