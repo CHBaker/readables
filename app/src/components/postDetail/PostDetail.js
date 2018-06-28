@@ -3,7 +3,7 @@ import './postDetail.css';
 import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getPost, getComments, newComment } from '../../actions/index';
+import { getPost, getComments, newComment, votePost } from '../../actions/index';
 import { NewCommentType } from '../../types/types';
 
 class PostDetail extends Component {
@@ -14,12 +14,9 @@ class PostDetail extends Component {
 
     componentWillMount() {
         this.props.getPost(this.props.match.params.postId);
-        //this.props.getComments(this.props.match.params.postId);
+        this.props.getComments(this.props.match.params.postId);
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
-    }
     handleSubmit = (e) => {
         e.preventDefault();
         const values = serializeForm(e.target, { hash: true});
@@ -27,7 +24,6 @@ class PostDetail extends Component {
             this.newUID(), Date.now(), values.body,
             'bob', this.props.match.params.postId
         );
-        console.log(comment)
         this.props.newComment(comment)
     }
 
@@ -37,7 +33,7 @@ class PostDetail extends Component {
 
     render() {
 
-        const { post, comments } = this.props;
+        const { post, comments, votePost } = this.props;
 
         return (
             <div className='post-detail-wrapper'>
@@ -63,13 +59,13 @@ class PostDetail extends Component {
                                 <div className='col-1'></div>
                                 <div className='col vote-col'>
                                     <span
-                                        
+                                        onClick={ () => votePost('upVote', post) }
                                         className='vote upvote'
                                     >
                                         &#9650;
                                     </span>
                                     <span
-                                        
+                                        onClick={ () => votePost('downVote', post) }
                                         className='vote downvote'
                                     >
                                         &#9660;
@@ -198,6 +194,7 @@ class PostDetail extends Component {
 
 const mapDispatchToProps = dispatch => ({
     getPost: (postId) => dispatch(getPost(postId)),
+    votePost: (post, vote) => dispatch(votePost(post, vote)),
     getComments: (postId) => dispatch(getComments(postId)),
     newComment: (comment) => dispatch(newComment(comment))
 });

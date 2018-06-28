@@ -82,21 +82,20 @@ function allPosts(state = initialPostState, action) {
             }
         case VOTE_POST_SUCCESS:
             const vote = action.postInfo.vote;
+            const voteCount = (vote === 'upVote') ? 1 : -1;
+            const votePost = action.postInfo.post;
             const votePostId = action.postInfo.post.id;
             const voteCategory = action.postInfo.post.category;
-            const voteCount = (vote === 'upVote') ? 1 : -1;
+            votePost.voteScore += voteCount;
             return {
                 ...state,
-                [voteCategory]: [...state[voteCategory].filter(post => {
-                    if (post.id === votePostId) {
-                        post.voteScore = post.voteScore + voteCount;
-                        return post
-                    }
-                    return post
-                })]
+                [voteCategory]: [...state[voteCategory].filter(post => post.id !== votePostId), votePost],
+                allPosts: [...state.allPosts.filter(post => post.id !== votePostId), votePost],
+                currentPost: {...votePost}
             }
         case NEW_COMMENT_SUCCESS:
             const comment = action.comment;
+            comment.voteScore = 0;
             return {
                 ...state,
                 currentComments: [comment, ...state.currentComments]
