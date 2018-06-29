@@ -117,3 +117,16 @@ export function editComment(comment) {
         .catch(error => console.log(error))
     );
 }
+
+export function deleteComment(comment, post) {
+    const commentInfo = { comment, post };
+    return(
+        fetch(
+            `${url}/comments/${comment.id}`, {
+                method: 'DELETE',
+                headers: headers
+            }
+        ).then(res => commentInfo)
+        .catch(error => console.log(error))
+    );
+}

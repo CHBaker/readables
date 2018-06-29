@@ -5,7 +5,8 @@ import {
     GET_POST_SUCCESS,
     GET_COMMENTS_SUCCESS,
     NEW_COMMENT_SUCCESS,
-    EDIT_COMMENT_SUCCESS
+    EDIT_COMMENT_SUCCESS,
+    DELETE_COMMENT_SUCCESS
 } from '../actions';
 
 export const initialUserState = {
@@ -101,6 +102,8 @@ function allPosts(state = initialPostState, action) {
             parent.commentCount += 1;
             return {
                 ...state,
+                allPosts: [parent, ...state.allPosts.filter(post => post.id !== parent.id)],
+                [parent.category]: [parent, ...state[parent.category].filter(post => post.id !== parent.id)],
                 currentPost: {...parent},
                 currentComments: [comment, ...state.currentComments]
             }
@@ -108,6 +111,18 @@ function allPosts(state = initialPostState, action) {
             return {
                 ...state,
                 currentComments: [action.comment, ...state.currentComments.filter(comment => comment.id !== action.comment.id)]
+            }
+        case DELETE_COMMENT_SUCCESS:
+            console.log(action);
+            const commentId = action.commentInfo.comment.id;
+            const relatedPost = action.commentInfo.post;
+            relatedPost.commentCount -= 1;
+            return {
+                ...state,
+                allPosts: [relatedPost, ...state.allPosts.filter(post => post.id !== relatedPost.id)],
+                [relatedPost.category]: [relatedPost, ...state[relatedPost.category].filter(post => post.id !== relatedPost.id)],
+                currentPost: relatedPost,
+                currentComments: [...state.currentComments.filter(comment => comment.id !== commentId)]
             }
         default:
             return state;

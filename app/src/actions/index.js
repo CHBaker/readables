@@ -9,6 +9,7 @@ export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS';
 export const VOTE_POST_SUCCESS = 'VOTE_POST_SUCCESS';
 export const NEW_COMMENT_SUCCESS = 'NEW_COMMENT_SUCCESS';
 export const EDIT_COMMENT_SUCCESS = 'EDIT_COMMENT_SUCCESS';
+export const DELETE_COMMENT_SUCCESS = 'DELETE_COMMENT_SUCCESS';
 
 export const fetchPosts = () => dispatch => {
     Api.getAllPosts().then(posts =>
@@ -89,4 +90,13 @@ export const editComment = (comment) => dispatch => {
             comment
         })
     ).catch(error => console.log(error));
+}
+
+export const deleteComment = (comment, post) => dispatch => {
+    Api.deleteComment(comment, post).then((commentInfo) =>
+        dispatch({
+            type: DELETE_COMMENT_SUCCESS,
+            commentInfo
+        })
+    )
 }

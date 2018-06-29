@@ -3,7 +3,7 @@ import './postDetail.css';
 import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getPost, getComments, newComment, votePost, deletePost } from '../../actions/index';
+import { getPost, getComments, newComment, votePost, deletePost, deleteComment } from '../../actions/index';
 import { NewCommentType } from '../../types/types';
 import EditPost from '../edit_post/EditPost';
 import EditComment from '../edit_comment/EditComment';
@@ -59,7 +59,7 @@ class PostDetail extends Component {
 
     render() {
 
-        const { post, comments, votePost } = this.props;
+        const { post, comments, votePost, deleteComment } = this.props;
 
         const {
             editModalOpen,
@@ -202,7 +202,7 @@ class PostDetail extends Component {
                                                 </span>
                                                 <span>
                                                     <button
-                                                        
+                                                        onClick={ () => deleteComment(comment, post) }
                                                         className='delete'
                                                     >
                                                         delete
@@ -247,7 +247,8 @@ const mapDispatchToProps = dispatch => ({
     votePost: (post, vote) => dispatch(votePost(post, vote)),
     deletePost: (post) => dispatch(deletePost(post)),
     getComments: (postId) => dispatch(getComments(postId)),
-    newComment: (comment) => dispatch(newComment(comment))
+    newComment: (comment) => dispatch(newComment(comment)),
+    deleteComment: (comment, post) => dispatch(deleteComment(comment, post))
 });
 
 const mapStateToProps = state => ({
