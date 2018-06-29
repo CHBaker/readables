@@ -92,8 +92,8 @@ function allPosts(state = initialPostState, action) {
             votePost.voteScore += voteCount;
             return {
                 ...state,
-                [voteCategory]: [...state[voteCategory].filter(post => post.id !== votePostId), votePost],
-                allPosts: [...state.allPosts.filter(post => post.id !== votePostId), votePost],
+                [voteCategory]: [votePost, ...state[voteCategory].filter(post => post.id !== votePostId)],
+                allPosts: [votePost, ...state.allPosts.filter(post => post.id !== votePostId)],
                 currentPost: {...votePost}
             }
         case NEW_COMMENT_SUCCESS:
