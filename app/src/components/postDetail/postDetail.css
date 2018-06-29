@@ -2,19 +2,6 @@
     height: 100%;
 }
 
-.new-post-wrapper {
-    position: absolute;
-    z-index: 1;
-    left: 130%;
-    top: 16%;
-    background: white;
-    color: black;
-    border-radius: 5px;
-    width: 700px;
-    height: 498px;
-    padding: 10px;
-}
-
 .veil {
     z-index: -1;
     position: absolute;
@@ -123,4 +110,18 @@ label[for=content] {
 
 .comment-info {
     margin-top: 15px;
+}
+
+.author-input {
+    margin-left: auto;
+    margin-right: auto;
+    display: block !important;
+    border: 2px solid black !important;
+    width: 564px !important;
+}
+
+.author-label {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 3px;
 }

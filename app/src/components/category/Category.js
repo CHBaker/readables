@@ -33,10 +33,20 @@ class Category extends Component {
         this.setState({ editModalOpen: false });
     }
 
+    sortByScore() {
+        this.props.allPosts[this.state.category].sort((a, b) => b.voteScore - a.voteScore );
+        this.setState(this.state)
+    }
+
+    sortByDate() {
+        this.props.allPosts[this.state.category].sort((a, b) => b.timestamp - a.timestamp );
+        this.setState(this.state);
+    }
+
     render() {
 
         const { category, editPost, editModalOpen } = this.state;
-        const { allPosts } = this.props;
+        const { allPosts, sortByScore } = this.props;
 
         return (
             <div className='category-wrapper'>
@@ -46,6 +56,19 @@ class Category extends Component {
                         { capitalize.capitalize(category) }
                     </div>
                     <div className='col'></div>
+                </div>
+                <div className='sort-container'>
+                    <button
+                        onClick={ () => this.sortByScore() }
+                        className='btn-group btn-primary btn'
+                    >
+                        sort by score
+                    </button>
+                    <button
+                        onClick={ () => this.sortByDate() }
+                        className='btn-group btn-primary btn'>
+                        sort by date
+                    </button>
                 </div>
                 <div className='posts-container'>
                     {

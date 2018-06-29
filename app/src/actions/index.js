@@ -1,6 +1,7 @@
 import * as Api from '../utils/api';
 
 export const POSTS_FETCHED_SUCCESS = 'POSTS_FETCHED_SUCCESS';
+export const SORT_BY_SCORE = 'SORT_BY_SCORE';
 export const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
 export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
 export const NEW_POST_SUCCESS = 'NEW_POST_SUCCESS';
@@ -98,5 +99,11 @@ export const deleteComment = (comment, post) => dispatch => {
             type: DELETE_COMMENT_SUCCESS,
             commentInfo
         })
-    )
+    );
+}
+
+export const sortByScore = () => dispatch => {
+    dispatch({
+        type: SORT_BY_SCORE
+    });
 }

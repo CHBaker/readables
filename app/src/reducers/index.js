@@ -6,7 +6,8 @@ import {
     GET_COMMENTS_SUCCESS,
     NEW_COMMENT_SUCCESS,
     EDIT_COMMENT_SUCCESS,
-    DELETE_COMMENT_SUCCESS
+    DELETE_COMMENT_SUCCESS,
+    SORT_BY_SCORE
 } from '../actions';
 
 export const initialUserState = {
@@ -123,6 +124,13 @@ function allPosts(state = initialPostState, action) {
                 [relatedPost.category]: [relatedPost, ...state[relatedPost.category].filter(post => post.id !== relatedPost.id)],
                 currentPost: relatedPost,
                 currentComments: [...state.currentComments.filter(comment => comment.id !== commentId)]
+            }
+        case SORT_BY_SCORE:
+            const posts = state.allPosts;
+            posts.sort((a, b) => a.voteScore - b.voteScore );
+            return {
+                ...state,
+                allPosts: [ ...posts ]
             }
         default:
             return state;

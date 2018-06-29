@@ -26,7 +26,7 @@ class PostDetail extends Component {
         const values = serializeForm(e.target, { hash: true});
         const comment = new NewCommentType(
             this.newUID(), Date.now(), values.body,
-            'bob', this.props.match.params.postId
+            values.author, this.props.match.params.postId
         );
         this.props.newComment(comment);
         this.commentFormRef.reset();
@@ -149,6 +149,14 @@ class PostDetail extends Component {
                                 <div className='col comment-body-input'>
                                     <textarea className='comment-input' type='text' name='body'>
                                     </textarea>
+                                </div>
+                            </div>
+                            <div className='author-label'>
+                                Author
+                            </div>
+                            <div className='form-group row'>
+                                <div className='col comment-author-input'>
+                                    <input type="text" name="author" className="form-control author-input" />
                                 </div>
                             </div>
                             <div className='form-group row'>

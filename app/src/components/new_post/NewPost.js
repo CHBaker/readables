@@ -18,7 +18,7 @@ class NewPost extends Component {
 
         const newPost = new NewPostType(
             this.newUID(), Date.now(), values.title,
-            values.body, 'bob', values.category
+            values.body, values.author, values.category
         );
 
         this.props.newPost(newPost);
@@ -56,7 +56,12 @@ class NewPost extends Component {
                             <div className="col-4">
                                 <input type="text" name="title" className="form-control" placeholder="title" />
                             </div>
-                            <div className='col'></div>
+                            <label htmlFor="author" className="col-2 col-form-label">Author</label>
+                            <div className='col-4'>
+                                <input type="text" name="author" className="form-control" placeholder="author" />
+                            </div>
+                        </div>
+                        <div className='form-group row'>
                             <label htmlFor="category" className="col-2 col-form-label">Category</label>
                             <div className="col-4">
                                 <select className='form-control' value={category} onChange={this.changeCategory}>
