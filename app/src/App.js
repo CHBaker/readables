@@ -28,11 +28,7 @@ class App extends Component {
         return (
             <div className='row app-main'>
                 <div className='col-3 nav-col'>
-                    <Nav
-                        onGetPosts={() => {
-                            this.getPosts()
-                        }}
-                    />
+                    <Nav />
                 </div>
                 <Route exact path='/' render={() => (
                     <div className='col'>

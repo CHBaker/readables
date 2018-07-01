@@ -35,7 +35,7 @@ class Category extends Component {
 
     sortByScore() {
         this.props.allPosts[this.state.category].sort((a, b) => b.voteScore - a.voteScore );
-        this.setState(this.state)
+        this.setState(this.state);
     }
 
     sortByDate() {
