@@ -12,17 +12,21 @@ class NewPost extends Component {
     }
 
     handleSubmit = (e) => {
+        const categories = ['react', 'redux', 'node', 'udacity'];
+
         e.preventDefault();
+        console.log(e)
         const values = serializeForm(e.target, { hash: true});
         values.category = this.state.category;
-
-        const newPost = new NewPostType(
-            this.newUID(), Date.now(), values.title,
-            values.body, values.author, values.category
-        );
-
-        this.props.newPost(newPost);
-        this.props.closeModal();
+        if (categories.includes(values.category)) {
+            const newPost = new NewPostType(
+                this.newUID(), Date.now(), values.title,
+                values.body, values.author, values.category
+            );
+    
+            this.props.newPost(newPost);
+            this.props.closeModal();
+        }
     }
 
     newUID = () => {
@@ -54,17 +58,17 @@ class NewPost extends Component {
                         <div className='form-group row form-top-wrapper'>
                             <label htmlFor="title" className="col-1 col-form-label">Title</label>
                             <div className="col-4">
-                                <input type="text" name="title" className="form-control" placeholder="title" />
+                                <input type="text" name="title" className="form-control" placeholder="title" required/>
                             </div>
                             <label htmlFor="author" className="col-2 col-form-label">Author</label>
                             <div className='col-4'>
-                                <input type="text" name="author" className="form-control" placeholder="author" />
+                                <input type="text" name="author" className="form-control" placeholder="author" required/>
                             </div>
                         </div>
                         <div className='form-group row'>
                             <label htmlFor="category" className="col-2 col-form-label">Category</label>
                             <div className="col-4">
-                                <select className='form-control' value={category} onChange={this.changeCategory}>
+                                <select className='form-control' value={category} onChange={this.changeCategory} required>
                                     <option value='react'>React</option>
                                     <option value='redux'>Redux</option>
                                     <option value='udacity'>Udacity</option>
@@ -78,7 +82,7 @@ class NewPost extends Component {
                         </div>
                         <div className='form-group row'>
                             <div className='col post-body-input'>
-                                <textarea className='content-input' type='text' name='body'>
+                                <textarea className='content-input' type='text' name='body' required>
                                 </textarea>
                             </div>
                         </div>
